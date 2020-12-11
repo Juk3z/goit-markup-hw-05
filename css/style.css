@@ -818,6 +818,7 @@ a {
 }
 
 .portfolio-pages.button {
+  cursor: pointer;
   border: 0px;
   min-width: 73px;
   min-height: 38px;
