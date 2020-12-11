@@ -60,6 +60,69 @@ section:nth-child(2n + 4) {
   background-color: var(--secondary-background-color);
 }
 
+.backdrop {
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0, 0, 0, 0.2);
+
+  opacity: 1;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  padding: 8px;
+
+  min-width: 530px;
+  min-height: 580px;
+
+  background-color: var(--secondary-background-color);
+
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.9);
+}
+
+.modal-close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+
+  width: 30px;
+  height: 30px;
+  border: 0px;
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  background-color: var(--accent-color);
+}
+
+.modal-close img {
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+}
+
 /* оформление ссылок и списков */
 .list {
   list-style: none;
@@ -71,6 +134,7 @@ a {
 
 .icon {
   fill: currentColor;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* оформление логотипа */
@@ -147,11 +211,14 @@ a {
 .nav-link {
   display: inline-block;
   padding: 32px 0;
+
   color: var(--main-text-color);
   font-weight: 500;
   font-size: 14px;
   line-height: 1.14;
   letter-spacing: 0.02em;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-link:hover,
@@ -163,11 +230,14 @@ a {
   display: flex;
   align-items: center;
   padding: 32px 0;
+
   color: var(--secondary-text-color);
   font-weight: 500;
   font-size: 14px;
   line-height: 1.14;
   letter-spacing: 0.02em;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .contacts:hover,
@@ -248,6 +318,8 @@ a {
   font-size: 16px;
   line-height: 1.87;
   letter-spacing: 0.06em;
+
+  cursor: pointer;
 }
 
 .banner-link:first-letter {
@@ -374,6 +446,31 @@ a {
   text-transform: uppercase;
 }
 
+.about .item {
+  position: relative;
+}
+
+.about .overlay {
+  display: flex;
+  position: absolute;
+  height: 70px;
+  width: 100%;
+  top: calc(100% - 70px);
+
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(47, 48, 58, 0.8);
+}
+
+.about .overlay-text {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.14;
+  text-transform: uppercase;
+  color: var(--alt-text-color);
+}
+
 /* оформление секции нашей команды */
 .team > .container {
   width: 1200px;
@@ -453,6 +550,9 @@ a {
   border-radius: 50%;
 
   color: var(--logo-main-color);
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .socials-item {
@@ -540,6 +640,9 @@ a {
   height: 100%;
 
   color: var(--logo-main-color);
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .clients-link:hover,
@@ -664,7 +767,21 @@ a {
 
 /* оформление ссылки, текущей страницы в секции навигации */
 .link.current-page {
+  position: relative;
   color: var(--accent-color);
+  position: relative;
+}
+
+.current-page::after {
+  content: '';
+  position: absolute;
+  display: block;
+  height: 4px;
+  width: 100%;
+  border-radius: 4px;
+
+  background-color: var(--accent-color);
+  top: calc(100% - 3px);
 }
 
 /* оформление меню портфолио */
@@ -714,6 +831,10 @@ a {
   font-weight: 500;
   font-size: 16px;
   line-height: 1.62;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio-pages:hover,
@@ -735,8 +856,12 @@ a {
   flex-basis: calc((100% - 60px) / 3);
 }
 
-.cards .item a:hover,
-.cards .item a:focus {
+.cards a {
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cards a:hover,
+.cards a:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
 }
@@ -768,4 +893,32 @@ a {
   color: var(--secondary-text-color);
   font-size: 16px;
   line-height: 30px;
+}
+
+.cards-picture {
+  position: relative;
+  overflow: hidden;
+}
+
+.cards-overlay {
+  position: absolute;
+  padding: 63px 24px;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(33, 150, 243, 0.9);
+
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cards a:hover .cards-overlay,
+.cards a:focus .cards-overlay {
+  transform: translate(0, -100%);
+}
+
+.cards .overlay-text {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--alt-text-color);
 }

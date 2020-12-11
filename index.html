@@ -44,7 +44,7 @@
         <section class="banner">
             <div class="container">
                 <h1 class="banner-title">Эффективные решения для вашего бизнеса</h1>
-                <a class ="banner-link link" href="">заказать услугу</a>
+                <button class="banner-link link" data-modal-open>заказать услугу</button>
             </div>
         </section>
 
@@ -82,9 +82,24 @@
             <div class="container">
                 <h2 class="about-tittle">чем мы занимаемся</h2>
                 <ul class="list">
-                        <li class="item"><img src="./images/portfolio1.jpg" alt="пример работы 1"></li>
-                        <li class="item"><img src="./images/portfolio2.jpg" alt="пример работы 2"></li>
-                        <li class="item"><img src="./images/portfolio3.jpg" alt="пример работы 3"></li>
+                        <li class="item">
+                            <img src="./images/portfolio1.jpg" alt="пример работы 1">
+                            <div class="overlay">
+                                <span class="overlay-text">десктопные приложения</span>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <img src="./images/portfolio2.jpg" alt="пример работы 2">
+                            <div class="overlay">
+                                <span class="overlay-text">мобильные приложения</span>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <img src="./images/portfolio3.jpg" alt="пример работы 3">
+                            <div class="overlay">
+                                <span class="overlay-text">дизайнерские решения</span>
+                            </div>
+                        </li>
                 </ul>
             </div>
         </section>
@@ -349,5 +364,11 @@
             </div>
         </div>
     </footer>
+    <div class="backdrop is-hidden" data-modal>
+        <div class="modal">
+            <button class="modal-close" data-modal-close><img src="./images/Close.svg" alt="close"></button>
+        </div>
+    </div>
+    <script src="./js/modal.js"></script>
 </body>
 </html>
